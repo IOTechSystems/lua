@@ -1,0 +1,29 @@
+name: Merge upstream branches
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Merge upstream
+        run: |
+          git config --global user.name 'iotech-jenkins'
+          git config --global user.email 'bot@iotechsys.com'
+          git pull --unshallow  
+
+          git remote add upstream https://github.com/lua/lua
+          git fetch upstream
+
+          git checkout -b v5.3 origin/v5.3
+          git merge --no-edit upstream/v5.3
+          git push origin v5.3
+
+          git checkout -b v5.4.0 origin/v5.4.0
+          git merge --no-edit upstream/v5.4.0
+          git push origin v5.4.0
+
+          git checkout master
+          git merge --no-edit upstream/master
+          git push origin master
