@@ -20,10 +20,6 @@ jobs:
           git merge --no-edit upstream/v5.3
           git push origin v5.3
 
-          git checkout -b v5.4.0 origin/v5.4.0
-          git merge --no-edit upstream/v5.4.0
-          git push origin v5.4.0
-
           git checkout master
           git merge --no-edit upstream/master
           git push origin master
