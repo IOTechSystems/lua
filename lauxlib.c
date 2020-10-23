@@ -699,6 +699,7 @@ static int skipcomment (LoadF *lf, int *cp) {
   else return 0;  /* no comment */
 }
 
+#ifndef AZURESPHERE
 
 LUALIB_API int luaL_loadfilex (lua_State *L, const char *filename,
                                              const char *mode) {
@@ -734,6 +735,8 @@ LUALIB_API int luaL_loadfilex (lua_State *L, const char *filename,
   lua_remove(L, fnameindex);
   return status;
 }
+
+#endif
 
 
 typedef struct LoadS {

@@ -283,6 +283,7 @@ static int load_aux (lua_State *L, int status, int envidx) {
   }
 }
 
+#ifndef AZURESPHERE
 
 static int luaB_loadfile (lua_State *L) {
   const char *fname = luaL_optstring(L, 1, NULL);
@@ -291,6 +292,8 @@ static int luaB_loadfile (lua_State *L) {
   int status = luaL_loadfilex(L, fname, mode);
   return load_aux(L, status, env);
 }
+
+#endif
 
 
 /*
@@ -358,6 +361,7 @@ static int dofilecont (lua_State *L, int d1, lua_KContext d2) {
   return lua_gettop(L) - 1;
 }
 
+#ifndef AZURESPHERE
 
 static int luaB_dofile (lua_State *L) {
   const char *fname = luaL_optstring(L, 1, NULL);
@@ -368,6 +372,7 @@ static int luaB_dofile (lua_State *L) {
   return dofilecont(L, 0, 0);
 }
 
+#endif
 
 static int luaB_assert (lua_State *L) {
   if (lua_toboolean(L, 1))  /* condition is true? */
@@ -453,11 +458,13 @@ static int luaB_tostring (lua_State *L) {
 static const luaL_Reg base_funcs[] = {
   {"assert", luaB_assert},
   {"collectgarbage", luaB_collectgarbage},
-  {"dofile", luaB_dofile},
   {"error", luaB_error},
   {"getmetatable", luaB_getmetatable},
   {"ipairs", luaB_ipairs},
+#ifndef AZURESPHERE
+  {"dofile", luaB_dofile},
   {"loadfile", luaB_loadfile},
+#endif
   {"load", luaB_load},
 #if defined(LUA_COMPAT_LOADSTRING)
   {"loadstring", luaB_load},

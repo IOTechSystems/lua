@@ -137,6 +137,7 @@ static time_t l_checktime (lua_State *L, int arg) {
 
 
 
+#ifndef AZURESPHERE
 
 static int os_execute (lua_State *L) {
   const char *cmd = luaL_optstring(L, 1, NULL);
@@ -173,6 +174,7 @@ static int os_tmpname (lua_State *L) {
   return 1;
 }
 
+#endif
 
 static int os_getenv (lua_State *L) {
   lua_pushstring(L, getenv(luaL_checkstring(L, 1)));  /* if NULL push nil */
@@ -387,14 +389,16 @@ static const luaL_Reg syslib[] = {
   {"clock",     os_clock},
   {"date",      os_date},
   {"difftime",  os_difftime},
-  {"execute",   os_execute},
   {"exit",      os_exit},
   {"getenv",    os_getenv},
+#ifndef AZURESPHERE
+  {"execute",   os_execute},
   {"remove",    os_remove},
   {"rename",    os_rename},
+  {"tmpname",   os_tmpname},
+#endif
   {"setlocale", os_setlocale},
   {"time",      os_time},
-  {"tmpname",   os_tmpname},
   {NULL, NULL}
 };
 
