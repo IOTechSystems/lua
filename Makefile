@@ -25,7 +25,7 @@ MYLIBS=
 MYOBJS=
 
 CC= /opt/azurespheresdk/Sysroots/6/tools/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-musleabi/arm-poky-linux-musleabi-gcc
-CFLAGS= -O2 -B "/opt/azurespheresdk/Sysroots/6/tools/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-musleabi" -DAZURESPHERE -march=armv7ve -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a7 --sysroot="/opt/azurespheresdk/Sysroots/5" -nodefaultlibs -pie -Wl,--no-undefined -Wl,--gc-sections
+CFLAGS= -Os -B "/opt/azurespheresdk/Sysroots/6/tools/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-musleabi" -DAZURESPHERE -march=armv7ve -mthumb -mfpu=neon -mfloat-abi=hard -mcpu=cortex-a7 --sysroot="/opt/azurespheresdk/Sysroots/5" -nodefaultlibs -pie -Wl,--no-undefined -Wl,--gc-sections
 
 # == END OF USER SETTINGS -- NO NEED TO CHANGE ANYTHING BELOW THIS LINE =======
 
